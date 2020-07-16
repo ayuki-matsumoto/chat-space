@@ -1,0 +1,41 @@
+
+.Chat-main
+
+  .Chat-main__group-info
+    .Chat-main__group-info__group-name 
+      テックキャンプf
+      %ul.Chat-main__group-info__group-name__member-list 
+        Member：
+        %li.Chat-main__group-info__group-name__member-list__member 
+          matsumoto
+      
+    .Chat-main__group-info__group-edit Edit
+
+
+  .Chat-main__message-area
+    .Chat-main__message-area__messages-list
+      .Chat-main__message-area__messages-list__message-box
+        .Chat-main__message-area__messages-list__message-box__user-info
+          .Chat-main__message-area__messages-list__message-box__user-info__user-name
+            matsumoto
+          .Chat-main__message-area__messages-list__message-box__user-info__whenposted
+            2020/07/16(Thu)14:15:01
+        .Chat-main__message-area__messages-list__message-box__message
+          猫かわいい
+      .Chat-main__message-area__messages-list__message-box
+        .Chat-main__message-area__messages-list__message-box__user-info
+          .Chat-main__message-area__messages-list__message-box__user-info__user-name
+            matsumoto
+          .Chat-main__message-area__messages-list__message-box__user-info__whenposted
+            2020/07/16(Thu)14:15:01
+        .Chat-main__message-area__messages-list__message-box__message
+          あゆまるだよ
+
+  .Chat-main__form-area
+    %form.Chat-main__form-area__message-area
+      .Chat-main__form-area__message-area__form-view
+        %input.Chat-main__form-area__message-area__form-view__message-form{type: "text", name: "", value: "type a message"}
+        %label.Chat-main__form-area__message-area__form-view__image-btn
+          = icon('far', 'image')
+          %input.Chat-main__form-area__message-area__form-view__image-btn__hidden-file{type: 'file'}
+      %input.Chat-main__form-area__message-area__send-btn{type: "submit", value: "Send"}    
