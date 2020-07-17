@@ -1,13 +1,14 @@
 .Side-bar
   .Side-bar__header
     .Side-bar__header__header-items
-      .Side-bar__header__header-items__name matsumoto
+      .Side-bar__header__header-items__name
+        = current_user.name
       %ul.Side-bar__header__header-items__icons
         %li
           =link_to "#" do
             = icon('fas', 'edit')
         %li
-          =link_to "#" do
+          =link_to "/users/:id/edit" do
             = icon('fas', 'cog')
   .Side-bar__main
     .Side-bar__main__group-list
