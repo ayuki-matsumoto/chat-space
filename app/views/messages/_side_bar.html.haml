@@ -5,21 +5,18 @@
         = current_user.name
       %ul.Side-bar__header__header-items__icons
         %li
-          =link_to "#" do
+          =link_to "/groups/new" do
             = icon('fas', 'edit')
         %li
           =link_to "/users/:id/edit" do
             = icon('fas', 'cog')
   .Side-bar__main
     .Side-bar__main__group-list
-      .Side-bar__main__group-list__group 
-        .Side-bar__main__group-list__group__group-name テックキャンプf
-        .Side-bar__main__group-list__group__group-message まだメッセージがありません
-        
-      .Side-bar__main__group-list__group 
-        .Side-bar__main__group-list__group__group-name テックキャンプf
-        .Side-bar__main__group-list__group__group-message まだメッセージがありません
-
-      .Side-bar__main__group-list__group 
-        .Side-bar__main__group-list__group__group-name テックキャンプf
-        .Side-bar__main__group-list__group__group-message まだメッセージがありません
+      - current_user.groups.each do |group|
+        .Side-bar__main__group-list__group 
+          = link_to '#' do
+            .Side-bar__main__group-list__group__group-name 
+              = group.name
+            .Side-bar__main__group-list__group__group-message
+              まだメッセージがありません
+      
