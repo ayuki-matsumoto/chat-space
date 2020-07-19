@@ -9,7 +9,9 @@
         %li.Chat-main__group-info__group-name__member-list__member 
           matsumoto
       
-    .Chat-main__group-info__group-edit Edit
+    .Chat-main__group-info__group-edit
+      = link_to 'Edit', "/groups/:id/edit", method: :get 
+      
 
 
   .Chat-main__message-area
