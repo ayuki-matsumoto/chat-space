@@ -1,0 +1,13 @@
+
+
+.Chat-main__Message-area__MessageBox
+  .Chat-main__Message-area__MessageBox__MessageInfo
+    .Chat-main__Message-area__MessageBox__MessageInfo__userName
+      = message.user.name
+    .Chat-main__Message-area__MessageBox__MessageInfo__date
+      = message.created_at.strftime("%Y年%m月%d日 %H時%M分")
+  .Chat-main__Message-area__MessageBox__Message
+    - if message.content.present?
+      %p.Chat-main__Message-area__MessageBox__Message__content
+        = message.content
+    = image_tag message.image.url, class: 'Chat-main__Message-area__MessageBox__Message__image' if message.image.present?
