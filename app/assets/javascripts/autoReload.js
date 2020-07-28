@@ -1,9 +1,9 @@
-
 $(function(){
+  
   function buildHTML(message){
     if ( message.image ) {
       let html =
-        `<div class="Chat-main__Message-area__MessageBox">
+        `<div class="Chat-main__Message-area__MessageBox" data-message-id=${message.id}>
           <div class="Chat-main__Message-area__MessageBox__MessageInfo">
             <div class="Chat-main__Message-area__MessageBox__MessageInfo__userName">
               ${message.user_name}
@@ -22,7 +22,7 @@ $(function(){
       return html;
     } else {
       let html =
-      `<div class="Chat-main__Message-area__MessageBox">
+      `<div class="Chat-main__Message-area__MessageBox" data-message-id=${message.id}>
         <div class="Chat-main__Message-area__MessageBox__MessageInfo">
           <div class="Chat-main__Message-area__MessageBox__MessageInfo__userName">
             ${message.user_name}
@@ -41,7 +41,7 @@ $(function(){
     };
   }
 
-  $('.Chat-main__form-area__message-area').on('submit', function(e){
+  /* $('.Chat-main__form-area__message-area').on('submit', function(e){
     e.preventDefault();
     let formData = new FormData(this);
     let url = $(this).attr('action');
@@ -63,5 +63,31 @@ $(function(){
     .fail(function(){
       alert("メッセージ送信に失敗しました");
     });
-  });
+  }); */
+
+
+  let reloadMessages = function() {
+    let last_message_id = $('.Chat-main__Message-area__MessageBox:last').data("message-id") || 0;
+    $.ajax({
+      url: "api/messages",
+      type: 'get',
+      dataType: 'json',
+      data: {id: last_message_id}
+    })
+    .done(function(messages) {
+      if (messages.length !== 0) {
+        let insertHTML = '';
+        $.each(messages, function(i, message) {
+          insertHTML += buildHTML(message)
+        });
+        $('.Chat-main__Message-area').append(insertHTML);
+        $('.Chat-main__Message-area').animate({ scrollTop: $('.Chat-main__Message-area')[0].scrollHeight});
+      }
+    })
+    .fail(function() {
+      alert('error');
+    });
+  };
+
+  setInterval(reloadMessages, 7000);
 });
